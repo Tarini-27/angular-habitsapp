@@ -1,0 +1,23 @@
+<div>
+    <h2>Add / Edit Habits</h2>
+    <form (ngSubmit)="addHabit()">
+        <input type="text" [(ngModel)]="newHabit.name" name="habit-name" placeholder="Habit name"> 
+        <select [(ngModel)]="newHabit.frequency" name="frequency" id="frequency"> 
+            <option value="Daily"> Daily </option>
+            <option value="Weekly"> Weekly </option>
+        </select>
+        <button type="submit"> Save </button>
+    </form>
+    <div>
+        <ul>
+            <li *ngFor="let habit of habitResponses()"> {{ habit.id }} - {{ habit.name }} - {{ habit.frequency }} <button type="button" (click)="markComplete(habit.id)">Complete</button><button type="button" (click)="deleteHabit(habit.id)">Delete</button>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="habitmessage()">
+        {{ habitmessage() }}
+    </div>
+    <div *ngIf="errormessage()">
+        {{ errormessage() }}
+    </div>
+</div>
